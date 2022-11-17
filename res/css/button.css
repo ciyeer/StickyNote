@@ -1,0 +1,18 @@
+/* 正常状态下显示的效果 */
+
+QPushButton#closeButton{
+    border-image:url(":/res/img/button/closerect_normal.png");
+}
+
+QPushButton#closeButton:hover{
+    border-image:url(":/res/img/button/closerect_hover.png");
+}
+
+QPushButton#closeButton:pressed{
+    border-image:url(":/res/img/button/closerect_pressed.png");
+}
+
+QLabel#Icon_Label{
+    border-image:url(":/res/img/logo/Logo.ico");
+}
+

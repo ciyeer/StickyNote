@@ -1,0 +1,38 @@
+QMenu{
+    background-color : rgb(253,253,254);
+    padding:5px;
+    border-radius:15px;
+}
+
+QMenu::item{
+    font-size:11pt;
+    color: rgb(0,0,0);
+    background-color:rgb(253,253,254);
+    padding: 8px 20px 5px 10px;
+    margin: 3px 10px;
+}
+
+QMenu::item:selected{
+    background-color : rgb(236,236,237);
+}
+
+QMenu::icon:checked{
+    background: rgb(253,253,254);
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    bottom: 1px;
+    left: 2px;
+}
+
+QMenu::icon:checked:selected{
+    background-color : rgb(236,236,237);
+    background-image: url(:/res/img/logo/Logo.png);
+}
+
+QMenu::separator{
+    height: 3px;
+    background: rgb(235,235,236);
+    margin-left: 8px;
+    margin-right: 8px;
+}

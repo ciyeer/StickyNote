@@ -1,0 +1,17 @@
+ScreenLock{
+	border-image:url(":/background.jpg")
+}					 
+					 
+QLabel#labelTime{
+    color:#4a4a4a;
+}
+
+QLabel#labelDate{
+    color:#4a4a4a;
+}
+
+QPushButton {
+    background-color:#3dce3d;
+    color:white;
+    border:0px;
+}

@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/css/button.css</file>
+        <file>res/css/contextmenu.css</file>
+        <file>res/css/img.css</file>
+        <file>res/css/lineEdit.css</file>
+        <file>res/css/mymenu.css</file>
+        <file>res/img/avatar/avatar_1.jpg</file>
+        <file>res/img/avatar/avatar_2.jpg</file>
+        <file>res/img/avatar/avatar_3.jpg</file>
+        <file>res/img/avatar/avatar_4.jpg</file>
+        <file>res/img/background/bg_1.jpg</file>
+        <file>res/img/background/bg_2.jpg</file>
+        <file>res/img/lock/lock.png</file>
+        <file>res/img/logo/Logo.ico</file>
+        <file>res/img/logo/Logo.png</file>
+        <file>res/img/button/closerect_hover.png</file>
+        <file>res/img/button/closerect_normal.png</file>
+        <file>res/img/button/closerect_pressed.png</file>
+        <file>res/img/button/closeround_hover.png</file>
+        <file>res/img/button/closeround_normal.png</file>
+        <file>res/img/button/closeround_pressed.png</file>
+        <file>res/img/tools/add.png</file>
+        <file>res/img/tools/cloud.png</file>
+        <file>res/img/tools/dingding.png</file>
+        <file>res/img/tools/exit.png</file>
+        <file>res/img/tools/fileadd.png</file>
+        <file>res/img/tools/lock.png</file>
+        <file>res/img/tools/option.png</file>
+        <file>res/img/tools/settings.png</file>
+        <file>res/img/tools/toolbox.png</file>
+        <file>res/img/tools/unlock.png</file>
+        <file>res/img/tools/warning.png</file>
+    </qresource>
+</RCC>
