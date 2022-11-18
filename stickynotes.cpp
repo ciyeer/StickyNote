@@ -13,7 +13,7 @@ StickyNotes::StickyNotes(QWidget *parent)
     // Settings
     connect(this, &TranslucentWidget::sigSendSettings, this, [=](){
         m_pSettingsUi = new SettingsUI;
-        m_pSettingsUi->show();
+        m_pSettingsUi->setHidden(false);
     });
 
     // onTopHint
@@ -38,12 +38,12 @@ StickyNotes::StickyNotes(QWidget *parent)
 }
 
 void StickyNotes::setSystemTrayMenu(){
-//    CommonHelper::setStyle(":/css/contextmenu.css");
+//    CommonHelper().setStyle(":/css/contextmenu.css");
     //系统托盘
 //    m_pSetTimeAction = new QAction(QStringLiteral("设置闹钟"), this);
-//    m_pQuitAction = new QAction("退出", this);
-//    m_pHideAction = new QAction("隐藏", this);
-//    m_pShowAction = new QAction("显示", this);
+//    m_pQuitAction = new QAction(QStringLiteral("退出"), this);
+//    m_pHideAction = new QAction(QStringLiteral("隐藏"), this);
+//    m_pShowAction = new QAction(QStringLiteral("显示"), this);
 //    connect(m_pQuitAction,SIGNAL(triggered(bool)),qApp,SLOT(quit()));
 //    //connect(m_pSetTimeAction,SIGNAL(triggered(bool)),this,SLOT(setTime()));
 //    connect(m_pHideAction,SIGNAL(triggered(bool)),this,SLOT(setHideWidget()));
@@ -54,7 +54,7 @@ void StickyNotes::setSystemTrayMenu(){
 //    m_pMyMenu->addAction(m_pHideAction);
 //    m_pMyMenu->addAction(m_pShowAction);
 //    m_pMyMenu->addAction(m_pQuitAction);
-    //myMenu->addSeparator();
+      //  myMenu->addSeparator();
 
     // 判断系统是否支持托盘图标
     if(!QSystemTrayIcon::isSystemTrayAvailable()){
@@ -64,7 +64,7 @@ void StickyNotes::setSystemTrayMenu(){
     m_pSystemTrayIcon = new QSystemTrayIcon(this);
     m_pSystemTrayIcon->setIcon(QIcon(":/res/img/logo/Logo.ico"));
     m_pSystemTrayIcon->setToolTip("便签");
-    m_pSystemTrayIcon->showMessage("托盘","托盘管理",QSystemTrayIcon::Information,10000);
+    m_pSystemTrayIcon->showMessage("托盘", "托盘管理", QSystemTrayIcon::Information,10000);
     //m_pSystemTrayIcon->setContextMenu(m_pMyMenu);
     m_pSystemTrayIcon->show();
 }

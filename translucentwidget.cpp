@@ -11,14 +11,15 @@
 #define PADDING 3
 #define MOVEHEIGHT 29
 
-/********************************************************************************
+/*************************************************************************
  *  @brief  m_pAct:右键不同选项
  *  @brief  m_pAct[0]: 设置, m_pAct[1]: 置顶, m_pAct[2]: 显示,
  *  @brief  m_pAct[3]: 隐藏, m_pAct[4]: 退出
  *  @param  none
-********************************************************************************/
+**************************************************************************/
 
-TranslucentWidget::TranslucentWidget(QWidget *parent, int minWidth, int minHeight, int alpha)
+TranslucentWidget::TranslucentWidget(QWidget *parent, int minWidth,
+                                     int minHeight, int alpha)
     : QWidget(parent)
     , m_bisPressed(false)
     , m_pAct(new QAction[10])
@@ -41,14 +42,14 @@ TranslucentWidget::TranslucentWidget(QWidget *parent, int minWidth, int minHeigh
     // onTopHint
     connect(&m_pAct[1], &QAction::triggered, this, [=](){
         emit sigSendOnTopHint(true);
-//        if(m_pAct[1].text() == "置顶"){
-//            emit sigSendOnTopHint(true);
-//            m_pAct[1].setText("取消置顶");  // 暂时不起作用
-//        }
-//        else{
-//            emit sigSendOnTopHint(false);
-//            m_pAct[1].setText("置顶");     // 暂时不起作用
-//        }
+    //  if(m_pAct[1].text() == "置顶"){
+    //      emit sigSendOnTopHint(true);
+    //      m_pAct[1].setText("取消置顶");  // 暂时不起作用
+    //  }
+    //  else{
+    //      emit sigSendOnTopHint(false);
+    //      m_pAct[1].setText("置顶");     // 暂时不起作用
+    //  }
     });
 
     // cancel onTopHint
@@ -71,17 +72,17 @@ void TranslucentWidget::ui_initialize(int minWidth, int minHeight){
     // 无边框: FramelessWindowHint
     // 置顶:   WindowStaysOnTopHint
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
-    CommonHelper::setStyle(":/res/css/contextmenu.css");
-    // 阴影
-//    QGraphicsDropShadowEffect *e2 = new QGraphicsDropShadowEffect(this);
-//    e2->setOffset(8,8);
-//    this->setGraphicsEffect(e2);
+    CommonHelper().setStyle(":/res/css/contextmenu.css");
+    //  阴影
+    //  QGraphicsDropShadowEffect *e2 = new QGraphicsDropShadowEffect(this);
+    //  e2->setOffset(8,8);
+    //  this->setGraphicsEffect(e2);
 
     // 背景模糊(Effect)
-//    auto blurEffect = new QGraphicsBlurEffect(this);
-//    blurEffect->setBlurRadius(10);
-//    blurEffect->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
-//    this->setGraphicsEffect(blurEffect);
+    //  auto blurEffect = new QGraphicsBlurEffect(this);
+    //  blurEffect->setBlurRadius(10);
+    //  blurEffect->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
+    //  this->setGraphicsEffect(blurEffect);
 
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setMouseTracking(true);
@@ -92,15 +93,18 @@ void TranslucentWidget::ui_initialize(int minWidth, int minHeight){
 }
 
 void TranslucentWidget::setSmallGeometry(QRect Rect){
-    setGeometry(Rect.left()-OVER,Rect.top()-OVER,Rect.width()+2*OVER,Rect.height()+2*OVER);
+    setGeometry(Rect.left()-OVER,Rect.top()-OVER,Rect.width()+2*OVER,
+                Rect.height()+2*OVER);
 }
 
 QRect TranslucentWidget::smallGeometry(){
-    return QRect(geometry().left()+OVER,geometry().top()+OVER,geometry().width()-2*OVER,geometry().height()-2*OVER);
+    return QRect(geometry().left()+OVER,geometry().top()+OVER,
+                 geometry().width()-2*OVER,geometry().height()-2*OVER);
 }
 
 QRect TranslucentWidget::smallRect(){
-    return QRect(OVER,OVER,smallGeometry().width(),smallGeometry().height());
+    return QRect(OVER,OVER,smallGeometry().width(),
+                 smallGeometry().height());
 }
 
 void TranslucentWidget::focusInMyEvent(){
@@ -186,13 +190,13 @@ void TranslucentWidget::paintEvent(QPaintEvent *event){
     painter.drawRect(x-6+OVER,H-4+OVER,2,2);
 }
 
-/********************************************************************************
+/*********************************************************************
  *  @function   region
  *  @brief      确定便签范围
  *  @param      currentGlobalPoint
  *  @return     none
  *  @Sample usage    全局坐标点
-********************************************************************************/
+**********************************************************************/
 void TranslucentWidget::region(const QPoint &currentGlobalPoint){
     QRect rect = this->smallGeometry();
     int top = rect.top();
@@ -212,7 +216,8 @@ void TranslucentWidget::region(const QPoint &currentGlobalPoint){
         inHead = false, emit leaveHead();
     }
     if (!resizeLocked) {
-        if (y >= bottom - PADDING && y<= bottom && x >= left && x <= right) {
+        if (y >= bottom - PADDING && y<= bottom
+                && x >= left && x <= right) {
             if (!inBottom) {
                 inBottom = true, emit enterBottom();
             }
@@ -220,35 +225,43 @@ void TranslucentWidget::region(const QPoint &currentGlobalPoint){
         else if (inBottom) {
             inBottom = false, emit leaveBottom();
         }
-        if (x >= left && x <= left + PADDING && y >= top && y <= top + PADDING) {
+        if (x >= left && x <= left + PADDING && y >= top
+                && y <= top + PADDING) {
             dir = TOP_LEFT;
             this->setCursor(Qt::SizeFDiagCursor);
         }
-        else if (x >= right - PADDING && x <= right && y >= top && y <= top + PADDING) {
+        else if (x >= right - PADDING && x <= right
+                 && y >= top && y <= top + PADDING) {
             dir = TOP_RIGHT;
             this->setCursor(Qt::SizeBDiagCursor);
         }
-        else if (x >= left && x <= left + PADDING && y >= bottom - PADDING && y <= bottom) {
+        else if (x >= left && x <= left + PADDING
+                 && y >= bottom - PADDING && y <= bottom) {
             dir = BOTTOM_LEFT;
             this->setCursor(Qt::SizeBDiagCursor);
         }
-        else if (x >= right - PADDING && x <= right && y >= bottom - PADDING && y <= bottom) {
+        else if (x >= right - PADDING && x <= right
+                 && y >= bottom - PADDING && y <= bottom) {
             dir = BOTTOM_RIGHT;
             this->setCursor(Qt::SizeFDiagCursor);
         }
-        else if (x >= left&& x <= left + PADDING && y >= top&& y <= bottom) {
+        else if (x >= left&& x <= left + PADDING
+                 && y >= top&& y <= bottom) {
             dir = LEFT;
             this->setCursor(Qt::SizeHorCursor);
         }
-        else if (x >= right - PADDING && x <= right&& y >= top&& y <= bottom) {
+        else if (x >= right - PADDING && x <= right
+                 && y >= top&& y <= bottom) {
             dir = RIGHT;
             this->setCursor(Qt::SizeHorCursor);
         }
-        else if (y >= top && y <= top + PADDING && x >= left && x <= right) {
+        else if (y >= top && y <= top + PADDING
+                 && x >= left && x <= right) {
             dir = TOP;
             this->setCursor(Qt::SizeVerCursor);
         }
-        else if (y >= bottom - PADDING && y <= bottom && x >= left && x <= right) {
+        else if (y >= bottom - PADDING && y <= bottom
+                 && x >= left && x <= right) {
             dir = BOTTOM;
             this->setCursor(Qt::SizeVerCursor);
         }
@@ -292,8 +305,9 @@ void TranslucentWidget::mouseMoveEvent(QMouseEvent *event){
     QPoint globalPoint = event->globalPos();
     int minH = minimumHeight()-2*OVER, minW = minimumWidth()-2*OVER;
 
-    if (focus && !smallGeometry().contains(event->globalPos()))
+    if (focus && !smallGeometry().contains(event->globalPos())) {
         emit focusOutMyEvent();
+    }
     if (!isLeftPressing) {
         region(globalPoint);
         return;
@@ -303,38 +317,47 @@ void TranslucentWidget::mouseMoveEvent(QMouseEvent *event){
         switch (dir) {
         case TOP_LEFT:
             if (newRect.bottom() - globalPoint.y() > minH &&
-                    newRect.right() - globalPoint.x() > minW)
+                    newRect.right() - globalPoint.x() > minW) {
                 newRect.setTopLeft(globalPoint);
-            else if (newRect.bottom() - globalPoint.y() > minH)
+            }
+            else if (newRect.bottom() - globalPoint.y() > minH) {
                 newRect.setTop(globalPoint.y());
-            else if (newRect.right() - globalPoint.x() > minW)
+            }
+            else if (newRect.right() - globalPoint.x() > minW) {
                 newRect.setLeft(globalPoint.x());
+            }
             break;
         case TOP_RIGHT:
-            if (newRect.bottom() - globalPoint.y() <= minH)
+            if (newRect.bottom() - globalPoint.y() <= minH) {
                 newRect.setRight(globalPoint.x());
-            else
+            }
+            else {
                 newRect.setTopRight(globalPoint);
+            }
             break;
         case BOTTOM_LEFT:
-            if (newRect.right() - globalPoint.x() <= minW)
+            if (newRect.right() - globalPoint.x() <= minW){
                 newRect.setBottom(globalPoint.y());
-            else
+            }
+            else {
                 newRect.setBottomLeft(globalPoint);
+            }
             break;
         case BOTTOM_RIGHT:
             newRect.setBottomRight(globalPoint);
             break;
         case TOP:
-            if (newRect.bottom() - globalPoint.y() > minH)
+            if (newRect.bottom() - globalPoint.y() > minH) {
                 newRect.setTop(globalPoint.y());
+            }
             break;
         case BOTTOM:
             newRect.setBottom(globalPoint.y());
             break;
         case LEFT:
-            if (newRect.right() - globalPoint.x() > minW)
+            if (newRect.right() - globalPoint.x() > minW) {
                 newRect.setLeft(globalPoint.x());
+            }
             break;
         case RIGHT:
             newRect.setRight(globalPoint.x());

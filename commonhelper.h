@@ -1,3 +1,16 @@
+/*********************************************************************
+*  @Copyright (C), 2022-2099, ...Co.,Ltd.
+*  @Filename:
+*  @Author:
+*  @Version:
+*  @Date:
+*  @Description:
+*  @Others:
+*  @Function List:
+*     1.
+*     2.
+*  @History:
+***********************************************************************/
 #ifndef COMMONHELPER_H
 #define COMMONHELPER_H
 
@@ -5,14 +18,12 @@
 #include <QFile>
 #include <QDebug>
 
-class CommonHelper
-{
+class CommonHelper{
 public:
-    static void setStyle(const QString &style)
-    {
+    void setStyle(const QString &style){
         QFile qss(style);
-        if(!qss.open(QFile::ReadOnly))
-        {
+        // qDebug() << "CommonHelper";
+        if(!qss.open(QFile::ReadOnly)){
             qDebug() << "qss file open failed";
             return;
         }

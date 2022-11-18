@@ -1,3 +1,16 @@
+/*********************************************************************
+*  @Copyright (C), 2022-2099, ...Co.,Ltd.
+*  @Filename:
+*  @Author:
+*  @Version:
+*  @Date:
+*  @Description:
+*  @Others:
+*  @Function List:
+*     1.
+*     2.
+*  @History:
+***********************************************************************/
 #ifndef CENTERWIDGET_H
 #define CENTERWIDGET_H
 

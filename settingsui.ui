@@ -32,7 +32,7 @@
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,11">
      <property name="spacing">
-      <number>1</number>
+      <number>0</number>
      </property>
      <item>
       <layout class="QHBoxLayout" name="titleLayout"/>
